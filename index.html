@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আইন সহায়ক (Ain Sahayak) | Bangladesh's Leading AI Legal Advisor</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Serif+Bengali:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <style>
+        :root {
+            --primary-navy: #0A1628;
+            --primary-green: #006A4E;
+            --accent-gold: #C9A84C;
+            --light-gold: #e5cc81;
+            --white: #ffffff;
+            --bg-light: #f4f7f6;
+            --text-main: #333333;
+            --text-light: #666666;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Serif Bengali', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .brand-logo {
+            font-family: 'Playfair Display', 'Noto Serif Bengali', serif;
+        }
+
+        /* --- STICKY NAV --- */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        .brand-logo {
+            color: var(--white);
+            font-size: 1.5rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo span {
+            color: var(--accent-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .btn-cta {
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .btn-cta:hover {
+            background: transparent;
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+            transform: translateY(-3px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #0d2546 100%);
+            padding: 140px 10% 100px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(circle at 2px 2px, rgba(201, 168, 76, 0.1) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero h2 {
+            color: var(--accent-gold);
+            font-weight: 400;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .hero p {
+            color: rgba(255,255,255,0.8);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.2rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-main {
+            padding: 18px 35px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .trust-badges {
+            margin-top: 4rem;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            color: white;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* --- STATS BAR --- */
+        .stats-bar {
+            background: var(--primary-green);
+            padding: 30px 10%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            border-top: 5px solid var(--accent-gold);
+        }
+
+        .stat-item h3 {
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* --- FEATURES (GLASSMORPHISM) --- */
+        .section-title {
+            text-align: center;
+            padding: 80px 0 40px;
+            font-size: 2.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 0 10% 80px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border-top: 4px solid transparent;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-top-color: var(--primary-green);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* --- CHAT INTERFACE --- */
+        #chat-section {
+            background: #eef2f5;
+            padding: 100px 5%;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            height: 700px;
+            border: 1px solid #ddd;
+        }
+
+        .chat-header {
+            background: var(--primary-navy);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header .status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .online-dot {
+            width: 12px;
+            height: 12px;
+            background: #27ae60;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        #chat-window {
+            flex-grow: 1;
+            padding: 30px;
+            overflow-y: auto;
+            background-image: url('data:image/svg+xml,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M0 40L40 0H20L0 20M40 40V20L20 40" fill="%23f0f0f0" fill-opacity="0.4" fill-rule="evenodd"/></svg>');
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 15px 20px;
+            border-radius: 20px;
+            position: relative;
+            font-size: 1rem;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot-message {
+            background: #f1f1f1;
+            color: #333;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .user-message {
+            background: var(--primary-green);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .typing {
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            display: none;
+        }
+
+        .chat-footer {
+            padding: 20px;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+
+        .suggestions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .chip {
+            padding: 8px 15px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid #ddd;
+        }
+
+        .chip:hover {
+            background: var(--accent-gold);
+            color: white;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-area input {
+            flex-grow: 1;
+            padding: 15px 25px;
+            border: 2px solid #eee;
+            border-radius: 50px;
+            outline: none;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .input-area input:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .send-btn {
+            background: var(--primary-navy);
+            color: white;
+            border: none;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .send-btn:hover {
+            background: var(--primary-green);
+            transform: rotate(15deg);
+        }
+
+        /* --- PRACTICE AREAS --- */
+        .practice-areas {
+            background: white;
+            padding: 100px 10%;
+        }
+
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .area-card {
+            background: #fafafa;
+            border: 1px solid #eee;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .area-card:hover {
+            background: var(--primary-navy);
+            color: white;
+        }
+
+        .area-card h4 { margin: 15px 0 5px; font-size: 1.1rem; }
+        .area-card span { font-size: 0.85rem; opacity: 0.8; }
+
+        /* --- FAQ SECTION --- */
+        .faq {
+            background: #fff;
+            padding: 100px 10%;
+        }
+
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .acc-item {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .acc-header {
+            padding: 25px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .acc-body {
+            padding: 0 0 25px 0;
+            display: none;
+            color: var(--text-light);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--primary-navy);
+            color: white;
+            padding: 80px 10% 20px;
+            border-top: 10px solid var(--primary-green);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo h3 { font-size: 2rem; color: var(--accent-gold); margin-bottom: 1rem; }
+        .footer-col h4 { margin-bottom: 25px; border-left: 3px solid var(--accent-gold); padding-left: 15px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul a { color: #ccc; text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+        .footer-col ul a:hover { color: var(--accent-gold); padding-left: 5px; }
+
+        .disclaimer-text {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            font-size: 0.8rem;
+            border-radius: 10px;
+            color: #aaa;
+            margin-top: 40px;
+            border: 1px solid #333;
+        }
+
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-green);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 999;
+            font-size: 1.5rem;
+            animation: bounce 3s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .practice-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .stats-bar { grid-template-columns: 1fr 1fr; gap: 20px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .hero { padding: 100px 5% 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY NAVIGATION -->
+    <nav>
+        <a href="#" class="brand-logo">⚖️ আইন সহায়ক <span>AI</span></a>
+        <div class="nav-links">
+            <a href="#home">হোম</a>
+            <a href="#features">বৈশিষ্ট্য</a>
+            <a href="#practice">আইনি ক্ষেত্রসমূহ</a>
+            <a href="#chat">চ্যাটবট</a>
+            <a href="#faq">প্রশ্নোত্তর</a>
+            <a href="#chat" class="btn-cta">বিনামূল্যে পরামর্শ নিন</a>
+        </div>
+        <div class="mobile-toggle">☰</div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <h1 class="reveal">বাংলাদেশের আইন এখন আপনার হাতের মুঠোয়</h1>
+        <h2 class="reveal">Your 24/7 AI-Powered Bangladeshi Legal Advisor</h2>
+        <p class="reveal">Get instant legal guidance on family law, property disputes, labor rights, and criminal acts in both Bangla & English. Smart, private, and authoritative.</p>
+        <div class="hero-btns reveal">
+            <a href="#chat" class="btn-cta btn-main">চ্যাট শুরু করুন →</a>
+            <a href="#how" class="btn-secondary">কিভাবে কাজ করে?</a>
+        </div>
+        <div class="trust-badges reveal">
+            <span>✓ Based on BD Laws</span>
+            <span>✓ Available 24/7</span>
+            <span>✓ Secure & Anonymous</span>
+            <span>✓ Zero Cost</span>
+        </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <section class="stats-bar">
+        <div class="stat-item">
+            <h3 class="counter" data-target="10000">10,000+</h3>
+            <p>প্রশ্নের উত্তর</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="counter" data-target="98">98%</h3>
+            <p>সন্তুষ্টি রেট</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="counter" data-target="50">50+</h3>
+            <p>আইনি বিষয়</p>
+        </div>
+        <div class="stat-item">
+            <h3>২৪/৭</h3>
+            <p>লাইভ সেবা</p>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features">
+        <h2 class="section-title">কেন আইন সহায়ক বেছে নেবেন?</h2>
+        <div class="features-grid">
+            <div class="feature-card reveal">
+                <span class="feature-icon">⚖️</span>
+                <h3>বাংলাদেশ আইন বিশেষজ্ঞ</h3>
+                <p>Trained on the Penal Code, Family Laws, and Property Acts of Bangladesh.</p>
+            </div>
+            <div class="feature-card reveal">
+                <span class="feature-icon">🌐</span>
+                <h3>দ্বিভাষিক সহায়তা</h3>
+                <p>Complete legal guidance in both pure Bangla and standard English.</p>
+            </div>
+            <div class="feature-card reveal">
+                <span class="feature-icon">🔒</span>
+                <h3>সম্পূর্ণ গোপনীয়</h3>
+                <p>We respect your privacy. No data is shared with 3rd parties.</p>
+            </div>
+            <div class="feature-card reveal">
+                <span class="feature-icon">⚡</span>
+                <h3>তাৎক্ষণিক উত্তর</h3>
+                <p>No more waiting for lawyers. Get primary advice in 5 seconds.</p>
+            </div>
+            <div class="feature-card reveal">
+                <span class="feature-icon">📱</span>
+                <h3>যেকোনো ডিভাইসে</h3>
+                <p>Fully optimized for smartphones, tablets, and low-speed connections.</p>
+            </div>
+            <div class="feature-card reveal">
+                <span class="feature-icon">💰</span>
+                <h3>সম্পূর্ণ বিনামূল্যে</h3>
+                <p>Democratic access to law knowledge for every Bangladeshi citizen.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHATBOT INTERFACE -->
+    <section id="chat">
+        <h2 class="section-title">এখনই আইনি পরামর্শ নিন</h2>
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="status">
+                    <span class="online-dot"></span>
+                    <div>
+                        <div style="font-weight: bold; line-height: 1.1;">আইন সহায়ক</div>
+                        <div style="font-size: 0.7rem; opacity: 0.8;">আইনি AI আপনার অপেক্ষায়</div>
+                    </div>
+                </div>
+                <div style="font-size: 0.8rem; cursor: pointer; color: var(--accent-gold);">চ্যাট বন্ধ করুন ✕</div>
+            </div>
+            <div id="chat-window">
+                <div class="message bot-message">
+                    আসসালামু আলাইকুম! আমি <strong>আইন সহায়ক</strong>। বাংলাদেশের প্রচলিত আইন অনুযায়ী যেকোনো প্রশ্ন নিচে করতে পারেন। যেমন: পরিবার, জমি বা শ্রম অধিকার। <br><br>
+                    <strong>আমি কি আপনাকে কোনো বিশেষ বিষয়ে সাহায্য করতে পারি?</strong>
+                </div>
+                <div class="typing" id="typing">AI লিখছে...</div>
+            </div>
+            <div class="chat-footer">
+                <div class="suggestions" id="chips">
+                    <div class="chip" onclick="quickSend('তালাকের প্রক্রিয়া কি?')">তালাকের প্রক্রিয়া কি?</div>
+                    <div class="chip" onclick="quickSend('জমির দলিল হারিয়ে গেলে কি করব?')">দলিল হারিয়ে গেলে কি করবেন?</div>
+                    <div class="chip" onclick="quickSend('শ্রমিকের ছুটির অধিকার কতদিন?')">ছুটির অধিকার কতদিন?</div>
+                    <div class="chip" onclick="quickSend('FIR করার নিয়ম')">FIR করার নিয়ম</div>
+                </div>
+                <form class="input-area" id="chat-form">
+                    <input type="text" id="user-input" placeholder="এখানে আপনার আইনি প্রশ্ন লিখুন..." required>
+                    <button type="submit" class="send-btn">➤</button>
+                </form>
+                <div style="font-size: 0.6rem; color: #999; margin-top: 10px; text-align: center;">
+                    ⚠️ এটি সাধারণ তথ্য প্রদান করে। বিশেষ আইনি প্রয়োজনে বিজ্ঞ আইনজীবীর পরামর্শ নিন।
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRACTICE AREAS -->
+    <section class="practice-areas" id="practice">
+        <h2 class="section-title">আমাদের আইনি জ্ঞানক্ষেত্রসমূহ</h2>
+        <div class="practice-grid">
+            <div class="area-card">
+                <div style="font-size: 2rem;">👨‍👩‍👧</div>
+                <h4>পারিবারিক আইন</h4>
+                <span>Family Law</span>
+            </div>
+            <div class="area-card">
+                <div style="font-size: 2rem;">🏠</div>
+                <h4>সম্পত্তি আইন</h4>
+                <span>Property Law</span>
+            </div>
+            <div class="area-card">
+                <div style="font-size: 2rem;">⚒️</div>
+                <h4>শ্রম আইন</h4>
+                <span>Labor Law</span>
+            </div>
+            <div class="area-card">
+                <div style="font-size: 2rem;">🚔</div>
+                <h4>ফৌজদারি আইন</h4>
+                <span>Criminal Law</span>
+            </div>
+            <div class="area-card">
+                <div style="font-size: 2rem;">💼</div>
+                <h4>ব্যবসায়িক আইন</h4>
+                <span>Business Law</span>
+            </div>
+            <div class="area-card">
+                <div style="font-size: 2rem;">📋</div>
+                <h4>চুক্তি আইন</h4>
+                <span>Contract Law</span>
+            </div>
+            <div class="area-card">
+                <div style="font-size: 2rem;">🏛️</div>
+                <h4>সাংবিধানিক অধিকার</h4>
+                <span>Civil Rights</span>
+            </div>
+            <div class="area-card">
+                <div style="font-size: 2rem;">🤝</div>
+                <h4>বিবাহ ও তালাক</h4>
+                <span>Matrimony</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq" id="faq">
+        <h2 class="section-title">সচরাচর জিজ্ঞাসিত প্রশ্ন</h2>
+        <div class="accordion">
+            <div class="acc-item">
+                <div class="acc-header">১. আইন সহায়ক কি আসলেই বিনামূল্যে? <span>+</span></div>
+                <div class="acc-body">হ্যাঁ, বাংলাদেশের প্রতিটি মানুষের মাঝে আইন শিক্ষা ছড়িয়ে দিতে আমাদের এই সেবাটি সম্পূর্ণ বিনামূল্যে উন্মুক্ত করা হয়েছে।</div>
+            </div>
+            <div class="acc-item">
+                <div class="acc-header">২. এটি কি পেশাদার আইনজীবীর বিকল্প? <span>+</span></div>
+                <div class="acc-body">মোটেও না। এটি প্রাথমিক আইনি ধারণা প্রদানের জন্য ডিজাইন করা হয়েছে। জটিল বা আইনি মোকদ্দমার ক্ষেত্রে আপনাকে অবশ্যই একজন বিএমবিএ (Bar Council) রেজিস্টার্ড আইনজীবীর সাহায্য নিতে হবে।</div>
+            </div>
+            <div class="acc-item">
+                <div class="acc-header">৩. আমার তথ্য কি এখানে গোপন থাকবে? <span>+</span></div>
+                <div class="acc-body">আমরা আপনার কোনো ব্যক্তিগত পরিচয় প্রকাশ করি না এবং ডেটা অত্যন্ত শক্তিশালী এনক্রিপশন এর মাধ্যমে সুরক্ষিত রাখি।</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="brand-logo" style="margin-bottom: 20px;">⚖️ আইন সহায়ক AI</div>
+                <p style="font-size: 0.9rem; opacity: 0.8; line-height: 1.6;">ডিজিটাল বাংলাদেশের আইনি ডিজিটাল সেবায় প্রথম মাইলফলক। ঘরে বসেই আপনার আইনি অধিকার সম্পর্কে জানুন।</p>
+            </div>
+            <div class="footer-col">
+                <h4>লিংক</h4>
+                <ul>
+                    <li><a href="#home">হোম</a></li>
+                    <li><a href="#features">সেবা সমূহ</a></li>
+                    <li><a href="#chat">আইনি সহায়তা</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>আইনি বিষয়</h4>
+                <ul>
+                    <li><a href="#">ফ্যামিলি ল</a></li>
+                    <li><a href="#">জমি জমা</a></li>
+                    <li><a href="#">উত্তরাধিকার</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>যোগাযোগ</h4>
+                <p style="font-size: 0.9rem;">সফট টাওয়ার, ঢাকা - ১২১২<br>ইমেইল: info@ainshayak.com<br>ফোন: +৮৮০ ৯৬১২৩ ৪৫৬</p>
+            </div>
+        </div>
+        <div class="disclaimer-text">
+            সতর্কতা: এই ওয়েবসাইট এবং এর কৃত্রিম বুদ্ধিমত্তা সম্পন্ন চ্যাটবট কেবলমাত্র তথ্যের সাধারণ সূত্র হিসেবে কাজ করার উদ্দেশ্যে তৈরি করা হয়েছে। এখানে প্রাপ্ত কোনো উত্তর চূড়ান্ত আইন বলে বিবেচিত হবে না এবং কোনো বিচারবিভাগীয় কাজে ব্যবহারযোগ্য নয়।
+        </div>
+        <p style="text-align:center; padding-top: 40px; font-size: 0.8rem; opacity: 0.6;">© ২০২৫ আইন সহায়ক। সকল স্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <!-- WhatsApp Floating Action -->
+    <a href="#chat" class="floating-wa">⚖️</a>
+
+    <script>
+        // --- CHAT LOGIC ---
+        const responses = [
+            { keywords: ['তালাক', 'বিচ্ছেদ', 'divorce'], ans: "মুসলিম পারিবারিক আইন অধ্যাদেশ ১৯৬১ অনুযায়ী, তালাকের ক্ষেত্রে নোটিশ প্রদান এবং ৯০ দিন পর এটি কার্যকর হওয়ার নিয়ম রয়েছে। স্ত্রী গর্ভবতী থাকলে সময় ভিন্ন হবে। আপনি কি বিস্তারিত তালাক এহসান বা তালাক বায়েন সম্পর্কে জানতে চান?" },
+            { keywords: ['জমি', 'দলিল', 'land', 'property'], ans: "দলিল হারিয়ে গেলে প্রথমে থানায় জিডি করতে হয়। এরপর একটি নন-জুডিশিয়াল স্ট্যাম্পে বিজ্ঞাপন দিয়ে তল্লাশী সম্পন্ন করে সংশ্লিষ্ট সাব-রেজিস্ট্রার অফিস থেকে ‘সার্টিফাইড কপি’ সংগ্রহ করতে হয়।" },
+            { keywords: ['শ্রমিক', 'ছুটি', 'labor', 'leave'], ans: "বাংলাদেশ শ্রম আইন ২০০৬ অনুযায়ী, একজন পূর্ণকালীন কর্মী ১ বছর কাজের বিনিময়ে অন্তত ১৪ দিন বাৎসরিক ছুটি (Annual Leave) এবং ১০ দিন নৈমিত্তিক ছুটি (Casual Leave) পান। অসুস্থ হলে বছরে ১৪ দিন বেতনভুক্ত অসুস্থতার ছুটি পাওয়ার অধিকার রাখেন।" },
+            { keywords: ['FIR', 'জিডি', 'case', 'police'], ans: "FIR বা প্রথম তথ্য প্রতিবেদন স্থানীয় থানায় করতে হয়। অপরাধ সম্পর্কে সঠিক তথ্য এবং ঘটনাস্থল উল্লেখ করা জরুরি। জিডির ক্ষেত্রে সাধারণত মাল হারানো বা ভবিষ্যতে নিরাপত্তার হুমকির জন্য আবেদন করা হয়।" },
+            { keywords: ['জামিন', 'bail'], ans: "জামিন হচ্ছে অভিযুক্তের শর্তসাপেক্ষে মুক্তি। অপরাধ যদি ‘জামিনযোগ্য’ হয়, তবে আদালতে আবেদনের মাধ্যমে বন্ড প্রদান সাপেক্ষে আপনি মুক্তি পেতে পারেন। আমলযোগ্য অপরাধ হলে আইনজীবীর মাধ্যমে সেশন আদালতে আবেদন করতে হবে।" },
+            { keywords: ['বিবাহ', 'কাবিন', 'marriage'], ans: "নিকাহ নামা বা কাবিন রেজিস্ট্রি করা বাধ্যতামূলক। বাংলাদেশে ছেলেদের বিবাহের নূন্যতম বয়স ২১ এবং মেয়েদের ১৮ বছর। বিয়ের ৩০ দিনের মধ্যে কাজী অফিসে এটি রেজিস্ট্রি করা আবশ্যক।" },
+            { keywords: ['গ্রেপ্তার', 'arrest', 'পুলিশ'], ans: "ফৌজদারি কার্যবিধি (CrPC) অনুযায়ী, পুলিশ আপনাকে গ্রেপ্তার করলে ২৪ ঘণ্টার মধ্যে নিকটস্থ ম্যাজিস্ট্রেটের সামনে হাজির করতে বাধ্য। বিনা পরোয়ানায় গ্রেপ্তার করলেও গ্রেপ্তারের কারণ আপনাকে জানানোর নিয়ম রয়েছে।" },
+            { keywords: ['উত্তরাধিকার', 'inheritance', 'ওয়ারিশ'], ans: "মুসলিম আইন অনুযায়ী ফারায়েজের মাধ্যমে উত্তরাধিকার নির্ধারিত হয়। জমি ভাগাভাগির ক্ষেত্রে মৃত ব্যক্তির দাফন-কাফন ও দেনা পরিশোধের পর অবশিষ্ট সম্পত্তি নির্ধারিত বন্টন হবে। হিন্দু আইনে বন্টনের প্রক্রিয়াটি সম্পূর্ণ ভিন্ন।" },
+            { keywords: ['নারী নির্যাতন', 'পারিবারিক সহিংসতা', 'violence'], ans: "নারী ও শিশু নির্যাতন দমন আইন ২০০০ এর আওতায় কড়া শান্তির বিধান আছে। অবিলম্বে সরকারের সাহায্য কেন্দ্র ১০৯২ বা ট্রিপল নাইন (৯৯৯) নম্বরে যোগাযোগ করার পরামর্শ দিচ্ছি।" },
+            { keywords: ['hi', 'hello', 'কেমন', 'নাম'], ans: "নমস্কার/সালাম। আমি আইন সহায়ক (Ain Sahayak AI)। আমি আপনাকে আইন বিষয়ক প্রাথমিক তথ্যে সাহায্য করতে পারি। আপনার কি প্রশ্ন রয়েছে?" }
+        ];
+
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+        const chatWindow = document.getElementById('chat-window');
+        const typing = document.getElementById('typing');
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const msg = userInput.value;
+            if(!msg.trim()) return;
+            addMessage(msg, 'user-message');
+            userInput.value = '';
+            
+            // Bot reply
+            setTimeout(() => {
+                showTyping(true);
+                setTimeout(() => {
+                    generateResponse(msg);
+                }, 1000);
+            }, 500);
+        });
+
+        function quickSend(text) {
+            addMessage(text, 'user-message');
+            showTyping(true);
+            setTimeout(() => {
+                generateResponse(text);
+            }, 1000);
+        }
+
+        function addMessage(text, className) {
+            const div = document.createElement('div');
+            div.className = `message ${className}`;
+            div.innerHTML = text;
+            chatWindow.appendChild(div);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+            showTyping(false);
+        }
+
+        function showTyping(show) {
+            typing.style.display = show ? 'block' : 'none';
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        function generateResponse(userMsg) {
+            const lowerMsg = userMsg.toLowerCase();
+            let matched = false;
+            
+            for(let res of responses) {
+                if(res.keywords.some(k => lowerMsg.includes(k))) {
+                    addMessage(res.ans, 'bot-message');
+                    matched = true;
+                    break;
+                }
+            }
+
+            if(!matched) {
+                addMessage("আপনার প্রশ্নটি কিছুটা অস্পষ্ট বা আমাদের ডেটাবেজে নেই। অনুগ্রহ করে নির্দিষ্ট আইনি বিষয় লিখুন। সঠিক পরামর্শের জন্য বিজ্ঞ আইনজীবীর সাহায্য নিতে পারেন।", "bot-message");
+            }
+        }
+
+        // --- UI ANIMATIONS & TABS ---
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.acc-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const body = header.nextElementSibling;
+                body.style.display = (body.style.display === 'block') ? 'none' : 'block';
+                header.querySelector('span').innerText = (body.style.display === 'block') ? '-' : '+';
+            });
+        });
+
+        // Mobile Nav Toggle
+        const menuBtn = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        menuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '70px';
+            navLinks.style.left = '0';
+            navLinks.style.width = '100%';
+            navLinks.style.background = '#0A1628';
+            navLinks.style.padding = '20px';
+        });
+    </script>
+</body>
+</html>
